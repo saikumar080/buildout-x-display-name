@@ -22,7 +22,7 @@ const Xnames=()=>{
            e.preventDefault();
            let valid=true;
            let newErrors={firstName:"",lastName:""};
-           const nameRegex=/^[A-Za-z]+$/
+           const nameRegex=/^[A-Za-z\s]+$/
            if(!firstName.trim()){
             newErrors.firstName="⚠️ please fill out this field.";
             valid=false;
@@ -70,7 +70,7 @@ const Xnames=()=>{
             <br />
             <button style={{cursor:"pointer"}}  type={"submit"}>submit</button>
             
-       {fullName && <h2 style={{color:"grey", margin:"15px"}} >Full Name: {fullName}</h2>}
+       {fullName && <p style={{color:"grey", margin:"15px"}}  data-testid="full name">Full Name: {fullName}</p>}
         </form>
       
         </>
