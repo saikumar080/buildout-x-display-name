@@ -22,13 +22,20 @@ const Xnames=()=>{
            e.preventDefault();
            let valid=true;
            let newErrors={firstName:"",lastName:""};
+           const nameRegex=/^[A-Za-z]+$/
            if(!firstName.trim()){
             newErrors.firstName="⚠️ please fill out this field.";
             valid=false;
             
+           }else if(!nameRegex.test(firstName)){
+            newErrors.firstName="⚠️ Name should contain only alphabets.";
+            valid=false;
            }
            if(!lastName.trim()){
             newErrors.lastName="⚠️ please fill out this field.";
+            valid=false;
+           }else if(!nameRegex.test(lastName)){
+            newErrors.lastName="⚠️ Name should contain only alphabets.";
             valid=false;
            }
            setErrors(newErrors);
