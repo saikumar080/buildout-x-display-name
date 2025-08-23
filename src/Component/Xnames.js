@@ -22,7 +22,7 @@ const Xnames=()=>{
            e.preventDefault();
            let valid=true;
            let newErrors={firstName:"",lastName:""};
-           const nameRegex=/^[A-Za-z\s]+$/
+           const nameRegex=/^[A-Za-z]+$/
            if(!firstName.trim()){
             newErrors.firstName="⚠️ please fill out this field.";
             valid=false;
@@ -47,7 +47,7 @@ const Xnames=()=>{
         }
 
     return(
-        <>
+        <div>
         <form onSubmit={handleSubmit} style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", border:"1px solid grey", padding:20, borderRadius:10, boxShadow:"0 0 10px rgba(0,0,0,0.1)"}}>
             <h1 style={{color:"grey" , fontWeight:"bold"}}> Full Name Display</h1>
             {/* First Name */}
@@ -62,18 +62,19 @@ const Xnames=()=>{
                         {error.firstName}
                     </p>
                 )}
-            <br />
+            
             {/* Last Name */}
             <label style={{alignSelf:"flex-start"}}>Last Name:</label>
             <input type="text" value={lastName} onChange={handleOnChangeLastName} />
             {error.lastName &&(<p style={{color:"red", margin:"5px 0"}}>{error.lastName}</p>)}
-            <br />
+            
             <button style={{cursor:"pointer"}}  type={"submit"}>submit</button>
             
-       {fullName && <p style={{color:"grey", margin:"15px"}}  data-testid="full name">Full Name: {fullName}</p>}
         </form>
+        {fullName && <p style={{color:"grey", margin:"15px"}}  data-testid="full name">Full Name: {fullName}</p>}
+
       
-        </>
+        </div>
     )
 }
 export default Xnames;
