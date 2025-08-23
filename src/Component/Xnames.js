@@ -22,20 +22,14 @@ const Xnames=()=>{
            e.preventDefault();
            let valid=true;
            let newErrors={firstName:"",lastName:""};
-           const nameRegex=/^[A-Za-z]+$/
+           
            if(!firstName.trim()){
             newErrors.firstName="⚠️ please fill out this field.";
             valid=false;
             
-           }else if(!nameRegex.test(firstName)){
-            newErrors.firstName="⚠️ Name should contain only alphabets.";
-            valid=false;
            }
            if(!lastName.trim()){
             newErrors.lastName="⚠️ please fill out this field.";
-            valid=false;
-           }else if(!nameRegex.test(lastName)){
-            newErrors.lastName="⚠️ Name should contain only alphabets.";
             valid=false;
            }
            setErrors(newErrors);
@@ -68,7 +62,7 @@ const Xnames=()=>{
             <input type="text" value={lastName} onChange={handleOnChangeLastName} />
             {error.lastName &&(<p style={{color:"red", margin:"5px 0"}}>{error.lastName}</p>)}
             
-            <button style={{cursor:"pointer"}}  type={"submit"}>submit</button>
+            <button style={{cursor:"pointer", margin:"10px",}}  type={"submit"}>submit</button>
             
         </form>
         {fullName && <p style={{color:"grey", margin:"15px"}}  data-testid="full name">Full Name: {fullName}</p>}
