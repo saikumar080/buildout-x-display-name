@@ -1,35 +1,71 @@
+
 import React, { useState } from "react";
 const Xnames=()=>{
     const [firstName, setFirstName]=useState("");
     const[lastName, setLastName]=useState("");
-
+    const[fullName, setFullName]=useState("");
+    const[error, setErrors]=useState({firstName:"", lastName:""});
     
         const handleOnChangeFirstName=(e)=>{
             setFirstName(e.target.value);
+            if(e.target.value.trim()){
+                setErrors((prev)=>({...prev, firstName:""}));
+            }
         }
         const handleOnChangeLastName=(e)=>{
             setLastName(e.target.value);
+            if(e.target.value.trim()){
+                setErrors((prev)=>({...prev, lastName:""}));
+            }
         }
         const handleSubmit=(e)=>{
-            e.preventDefault();
-            setFirstName("");
-            setLastName("");
+           e.preventDefault();
+           let valid=true;
+           let newErrors={firstName:"",lastName:""};
+           if(!firstName.trim()){
+            newErrors.firstName="⚠️ please fill out this field.";
+            valid=false;
+            
+           }
+           if(!lastName.trim()){
+            newErrors.lastName="⚠️ please fill out this field.";
+            valid=false;
+           }
+           setErrors(newErrors);
+           if(valid){
+            setFullName(`${firstName} ${lastName}`);
+           }else{
+            setFullName("");
+           }
         }
 
     return(
         <>
         <form onSubmit={handleSubmit} style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", border:"1px solid grey", padding:20, borderRadius:10, boxShadow:"0 0 10px rgba(0,0,0,0.1)"}}>
-            <h1 style={{color:" grey" , fontWeight:"bold"}}> Full Name Display</h1>
-            <span>First Name: </span>
-            <input type="text"  value={firstName} onChange={handleOnChangeFirstName} />
+            <h1 style={{color:"grey" , fontWeight:"bold"}}> Full Name Display</h1>
+            {/* First Name */}
+            <label style={{alignSelf:"flex-start"}}>First Name: </label>
+            <input 
+                type="text"  
+                value={firstName} 
+                onChange={handleOnChangeFirstName} 
+                />
+                {error.firstName &&(
+                    <p style={{color:"red", margin:"5px 0"}}>
+                        {error.firstName}
+                    </p>
+                )}
             <br />
-            <br />
-            <span>Last Name:</span>
+            {/* Last Name */}
+            <label style={{alignSelf:"flex-start"}}>Last Name:</label>
             <input type="text" value={lastName} onChange={handleOnChangeLastName} />
+            {error.lastName &&(<p style={{color:"red", margin:"5px 0"}}>{error.lastName}</p>)}
             <br />
             <button style={{cursor:"pointer"}}  type={"submit"}>submit</button>
+            
+       {fullName && <h2 style={{color:"grey", margin:"15px"}} >Full Name: {fullName}</h2>}
         </form>
-       {}
+      
         </>
     )
 }
