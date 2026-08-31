@@ -41,7 +41,7 @@ const Xnames=()=>{
         }
 
     return(
-        <div>
+        <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
         <form onSubmit={handleSubmit} style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", border:"1px solid grey", padding:20, borderRadius:10, boxShadow:"0 0 10px rgba(0,0,0,0.1)"}}>
             <h1 style={{color:"grey" , fontWeight:"bold"}}> Full Name Display</h1>
             {/* First Name */}
